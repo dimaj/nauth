@@ -1,0 +1,5 @@
+# robotstxt.org
+
+# Only humans are allowed here
+User-agent: *
+Disallow: /

@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">One Time Passwords
+        <span class="badge">{{ timeLeft }}</span>
+      </h1>
+      <ul class="list-group" ng-repeat="account in accounts">
+        <li
+        <li class="list-group-item" ng-if="account.provider != 'new_account'">
+          <div>
+            <div class="code"><strong>{{ account.code }}</strong></div>
+            <div class="provider">{{ account.provider }}</div>
+          </div>
+          <button id='qr' ng-click="toggleQR(account)">Show QR</button>
+          <div id='qrImage' ng-show="account.showQR">
+            <img src="{{account.qrcode}}">
+          </div>
+          <button ng-click="deleteAccount(account)">Delete Account</button>
+        </li>
+      </ul>
+      <ul>
+        <li class="list-group-item">
+          <button ng-model="showAddForm" ng-click="showAddForm = !showAddForm">Add Account</button>
+
+          <form id="add_account_form" ng-if="showAddForm" ng-submit="addAccount()">
+            <input type="text" id="issuer" ng-model="addAccountForm.provider" placeholder="Issuer">
+            <input type="text" id="clientSecret" ng-model="addAccountForm.secret" placeholder="Client Secret">
+            <input type="text" id="email" ng-model="addAccountForm.email" placeholder="Email Address">
+            <input type="submit">
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
